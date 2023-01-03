@@ -100,11 +100,12 @@ const defaultStackSynthesizer2 = new cdk.DefaultStackSynthesizer({
 
 const app = new cdk.App();
 
-const persistentStack = new FakeTubePersistentStack(app, 'FakeTubePersistentStack', {
+const persistentStack = new FakeTubePersistentStack(app, 'FakeTubePersistentStackWAF', {
   synthesizer: defaultStackSynthesizer2,
 })
 
-new FakeTubeApiStack(app, 'FakeTubeApiStack', {
+new FakeTubeApiStack(app, 'FakeTubeApiStackWAF', {
   synthesizer: defaultStackSynthesizer,
   table: persistentStack.table,
+  vpc: persistentStack.vpc,
 });
